@@ -5,21 +5,21 @@ using namespace std;
 int arr[MAX];
 int sortedArr[MAX];
 
-// ¿ø¼Ò°¡ 1°³°¡ µÉ ¶§±îÁö °è¼Ó Àý¹ÝÀ¸·Î ³ª´©¸é °á±¹ Á¤·ÄµÅÀÖ´Â »óÅÂ.
-// ¿©±â¼­ µÎ ¹è¿­ÀÇ ¸ðµç ¿ø¼Ò Áß °¡Àå ÀÛÀº ¿ø¼Ò¸¦ ¸ÕÀú ³Ö¾îÁÖ¸é¼­ merge.
-// ÀÇ¹Ì»ó µÎ ¹è¿­ÀÌ¶ó°í Ç¥ÇöÇßÀ» »Ó »ç½Ç ÇÏ³ªÀÇ ¹è¿­ ¾È¿¡¼­ Àý¹ÝÀ» ³ª´« °ÍÃ³·³ ÀÎµ¦½º¸¸ µû·Î ±â¾ïÇÑ °Í »Ó
+// ì›ì†Œê°€ 1ê°œê°€ ë  ë•Œê¹Œì§€ ê³„ì† ì ˆë°˜ìœ¼ë¡œ ë‚˜ëˆ„ë©´ ê²°êµ­ ì •ë ¬ë¼ìžˆëŠ” ìƒíƒœ.
+// ì—¬ê¸°ì„œ ë‘ ë°°ì—´ì˜ ëª¨ë“  ì›ì†Œ ì¤‘ ê°€ìž¥ ìž‘ì€ ì›ì†Œë¥¼ ë¨¼ì € ë„£ì–´ì£¼ë©´ì„œ merge.
+// ì˜ë¯¸ìƒ ë‘ ë°°ì—´ì´ë¼ê³  í‘œí˜„í–ˆì„ ë¿ ì‚¬ì‹¤ í•˜ë‚˜ì˜ ë°°ì—´ ì•ˆì—ì„œ ì ˆë°˜ì„ ë‚˜ëˆˆ ê²ƒì²˜ëŸ¼ ì¸ë±ìŠ¤ë§Œ ë”°ë¡œ ê¸°ì–µí•œ ê²ƒ ë¿
 
-// i´Â ¿ÞÂÊ ¹è¿­ÀÇ Ã¹¹øÂ° ¿ø¼Ò
-// j´Â ¿À¸¥ÂÊ ¹è¿­ÀÇ Ã¹¹øÂ° ¿ø¼Ò
-// k´Â º´ÇÕµÈ ¹è¿­ÀÇ Ã¹¹øÂ° ¿ø¼Ò
+// iëŠ” ì™¼ìª½ ë°°ì—´ì˜ ì²«ë²ˆì§¸ ì›ì†Œ
+// jëŠ” ì˜¤ë¥¸ìª½ ë°°ì—´ì˜ ì²«ë²ˆì§¸ ì›ì†Œ
+// këŠ” ë³‘í•©ëœ ë°°ì—´ì˜ ì²«ë²ˆì§¸ ì›ì†Œ
 void merge(int start, int mid, int end, int arr[])
 {
 	int i = start;
 	int j = mid + 1;
 	int k = start;
 
-	// ÀÛÀº ¼ø¼­´ë·Î sortedArr¿¡ »ðÀÔ
-	// i¿Í j µÑ Áß ÇÏ³ª°¡ ³¡±îÁö °¥ ¶§ ±îÁö ¹Ýº¹
+	// ìž‘ì€ ìˆœì„œëŒ€ë¡œ sortedArrì— ì‚½ìž…
+	// iì™€ j ë‘˜ ì¤‘ í•˜ë‚˜ê°€ ëê¹Œì§€ ê°ˆ ë•Œ ê¹Œì§€ ë°˜ë³µ
 	while (i <= mid && j <= end) 
 	{
 		if (arr[i] <=arr[j])
@@ -30,7 +30,7 @@ void merge(int start, int mid, int end, int arr[])
 		k++;
 	}
 
-	// È¥ÀÚ ³²Àº ³ª¸ÓÁö ¹è¿­ÀÇ ¸ðµç °ªÀ» ³Ö¾îÁØ´Ù
+	// í˜¼ìž ë‚¨ì€ ë‚˜ë¨¸ì§€ ë°°ì—´ì˜ ëª¨ë“  ê°’ì„ ë„£ì–´ì¤€ë‹¤
 	if (i > mid)
 	{
 		for (int index = j; index <= end; index++)
@@ -48,13 +48,16 @@ void merge(int start, int mid, int end, int arr[])
 
 void mergeSort(int start, int end, int arr[])
 {
-	// Å©±â°¡ 1º¸´Ù Å« °æ¿ì¿¡ ½ÇÇà
+	// í¬ê¸°ê°€ 1ë³´ë‹¤ í° ê²½ìš°ì— ì‹¤í–‰
 	if (start < end)
 	{
 		int mid = (start + end) / 2;
+		
+		// mergeSortí˜¸ì¶œë˜ë©´ì„œ ì¼ë‹¨ ì ˆë°˜ì”© ë¨¼ì € ë‚˜ëˆˆë‹¤
 		mergeSort(start, mid, arr);
 		mergeSort(mid + 1, end, arr);
 
+		// ë³‘í•©ë˜ë©´ì„œ ì •ë ¬ ìˆ˜í–‰
 		merge(start, mid, end, arr);
 	}
 }
