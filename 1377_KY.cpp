@@ -16,9 +16,6 @@ int main() {
 	for (int i = 1; i < N; i++) {
 		if (v[i].second > i) {
 			temp = v[i].second - i;
-			if (temp < 0) {
-				temp = -temp;
-			}
 			if (temp > result) {
 				result = temp;
 			}
